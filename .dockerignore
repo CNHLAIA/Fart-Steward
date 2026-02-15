@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Node
+**/node_modules/
+**/dist/
+
+# Misc
+.git/
+.sisyphus/
+*.log

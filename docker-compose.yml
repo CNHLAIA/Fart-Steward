@@ -1,0 +1,39 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "5000:5000"
+    environment:
+      SQLITE_PATH: ${SQLITE_PATH:-/app/data/app.db}
+      SECRET_KEY: ${SECRET_KEY:-dev-secret-key}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-dev-secret-key}
+    volumes:
+      - type: bind
+        source: ./data
+        target: /app/data
+    networks:
+      - appnet
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/api/health', timeout=2).read()"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "80:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    driver: bridge

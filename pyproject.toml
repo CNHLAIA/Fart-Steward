@@ -1,0 +1,4 @@
+[tool.pyright]
+include = ["backend"]
+extraPaths = ["backend"]
+typeCheckingMode = "basic"
