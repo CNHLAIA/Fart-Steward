@@ -1,5 +1,7 @@
 # 屁事管家 💨
 
+**[English Version](docs/README_EN.md)**
+
 一个专业的放屁记录与分析工具，帮你追踪每一次 "屁事" 的数据。
 
 > 人生大事，屁事也算。记录生活，从细节开始。
@@ -109,4 +111,4 @@ rm -rf data
 
 ## 📄 许可证
 
-MIT License
+AGPL-3.0 License

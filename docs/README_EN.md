@@ -1,128 +1,114 @@
-# Fart Steward
+# Fart Steward 💨
 
-[中文版](../README.md)
+**[中文版](../README.md)**
 
-A personal health tracking tool for recording and analyzing fart statistics. Built with React + Flask + SQLite + Docker.
+A professional fart recording and analysis tool that helps you track data for every "fart event" in your life.
 
-## Features
+> Life's big events include fart events too. Start recording life from the details.
 
-- **Record fart events**: Track duration, type (loud, silent, continuous), smell level, temperature, and moisture
-- **Daily statistics**: View daily fart counts and trends
-- **Chart analysis**: Visualize your fart patterns over time (coming soon)
-- **Web access**: Access from any device via browser
-- **Self-hosted**: Deploy on your NAS using Docker
+## 💨 Features
 
-## Tech Stack
+### User System
+- User registration and login (JWT authentication)
+- Personal data isolation for privacy protection
 
-- **Frontend**: React + Vite (served by NGINX on port 80)
-- **Backend**: Flask (port 5000)
-- **Database**: SQLite (persistent via bind mount)
-- **Deployment**: Docker + Docker Compose
-- **E2E Testing**: Playwright
+### Fart Record Management
+- Full CRUD operations (Create, Read, Update, Delete)
+- Record detailed information: time, duration, type, smell, temperature sensation, moisture sensation, notes
+- Support for custom fart types
+- Date range filtering
+- Paginated browsing of history records
 
-## Prerequisites
+### Data Analysis (7 Charts)
+- **Daily Statistics** - View daily fart count trends
+- **Weekly Trends** - Long-term changes by week
+- **Type Distribution** - Analysis of different type proportions
+- **Smell Distribution** - Odor level statistics
+- **Duration Distribution** - Fart duration analysis
+- **24x7 Hourly Heatmap** - Find your "golden hours"
+- **Cross Analysis** - Correlation analysis between duration and smell
 
-- Docker + Docker Compose (Docker Desktop works fine)
+### Data Export
+- Export to CSV format
+- Export to Excel (xlsx) format
+- Filter export content by date range
 
-## Quick Start
+## 🚀 Quick Start
 
-1. Create a local env file:
+### Prerequisites
+- Docker + Docker Compose
+
+### One-Click Start
 
 ```bash
+# 1. Copy environment variable file
 cp .env.example .env
-```
 
-2. Build and start services:
-
-```bash
-docker-compose build --no-cache
+# 2. Start services
 docker-compose up -d
+
+# 3. Visit after services are ready
+open http://localhost
 ```
 
-3. Verify services:
+After services start:
+- Frontend: `http://localhost`
+- Backend API: `http://localhost:5000`
 
-```bash
-curl http://localhost:5000/api/health
-curl http://localhost:80
-```
-
-Expected:
-- `GET http://localhost:5000/api/health` returns `{"status":"ok"}`
-- `GET http://localhost:80` returns the frontend HTML
-
-## Architecture
-
-- **Backend (Flask)**
-  - Exposed: `localhost:5000`
-  - Persists SQLite to `./data/app.db` via bind mount `./data:/app/data`
-  - Health check: `GET /api/health`
-
-- **Frontend (NGINX)**
-  - Exposed: `localhost:80`
-  - Serves compiled static files
-  - Proxies `http://localhost:80/api/*` -> `http://backend:5000/api/*`
-
-## Data Persistence
-
-The backend uses `SQLITE_PATH` (default `/app/data/app.db`). The `docker-compose.yml` mounts `./data` into `/app/data`, so the database persists across restarts.
-
-To verify persistence:
-
-```bash
-docker-compose restart
-```
-
-Your previously created records should still exist.
-
-## Running E2E Tests (Playwright)
-
-E2E tests live under `frontend/e2e` and run against the Docker stack.
-
-1. Ensure the stack is running:
-
-```bash
-docker-compose up -d
-```
-
-2. Install test dependencies (once):
-
-```bash
-cd frontend
-npm install
-npx playwright install
-```
-
-3. Run tests:
-
-```bash
-cd frontend
-npm run e2e
-```
-
-The test suite includes a desktop journey and a mobile viewport check.
-
-## Documentation
-
-- [API Reference](API.md)
-- [Deployment Guide](DEPLOYMENT.md)
-- [Architecture](ARCHITECTURE.md)
-
-## Stop / Cleanup
+### Stop Services
 
 ```bash
 docker-compose down
 ```
 
-To remove persisted data:
+### Clear Data
 
 ```bash
+# Stop services and delete database
+docker-compose down
 rm -rf data
 ```
 
-## Why Fart Steward?
+## 🛠 Tech Stack
 
-Tracking your digestive health can provide valuable insights. If you notice unusual patterns, it might be time to consult a doctor. This tool helps you keep a personal record for your health awareness.
+| Layer | Technology |
+|-------|------------|
+| Frontend | React + Vite + Tailwind CSS |
+| Backend | Flask + SQLAlchemy |
+| Database | SQLite |
+| Deployment | Docker + Docker Compose |
+| Charts | ECharts |
+| Auth | JWT |
 
----
+## 📚 Documentation Links
 
-*Stay healthy, track responsibly.*
+- [中文版](../README.md)
+- [API Reference](API.md)
+- [Deployment Guide](DEPLOYMENT.md)
+- [Architecture](ARCHITECTURE.md)
+
+## 📁 Project Structure
+
+```
+.
+├── backend/          # Flask backend
+│   ├── routes/       # API routes
+│   ├── auth.py       # Authentication module
+│   └── models.py     # Data models
+├── frontend/         # React frontend
+│   └── src/
+│       ├── pages/    # Page components
+│       └── components/ # Reusable components
+├── docker-compose.yml
+├── Dockerfile.backend
+├── Dockerfile.frontend
+└── .env.example
+```
+
+## 🤝 Contributing
+
+Issues and Pull Requests are welcome.
+
+## 📄 License
+
+AGPL-3.0 License
