@@ -10,25 +10,37 @@
     "records": "记录",
     "analytics": "分析",
     "export": "导出",
-    "logout": "退出登录"
+    "logout": "退出登录",
+    "hello": "你好, {{name}}"
   },
   "login": {
     "title": "登录",
     "username": "用户名",
     "password": "密码",
     "submit": "登录",
-    "noAccount": "没有账号？立即注册"
+    "noAccount": "没有账号？立即注册",
+    "signInToAccount": "登录你的账号",
+    "createAccount": "创建新账号",
+    "or": "或",
+    "signingIn": "登录中..."
   },
   "register": {
     "title": "注册",
-    "hasAccount": "已有账号？立即登录"
+    "hasAccount": "已有账号？立即登录",
+    "createAccount": "创建账号",
+    "confirmPassword": "确认密码",
+    "passwordsDoNotMatch": "密码不匹配",
+    "creatingAccount": "创建账号中...",
+    "signInExisting": "登录已有账号"
   },
   "records": {
     "title": "屁管家",
     "todayCount": "今日放屁次数",
     "noRecords": "暂无记录",
     "startTracking": "开始追踪你的屁事吧！",
-    "addFirst": "添加第一条记录"
+    "addFirst": "添加第一条记录",
+    "loadMore": "加载更多",
+    "fartsToday": "今日放屁:"
   },
   "form": {
     "newTitle": "新增记录",
@@ -41,6 +53,59 @@
     "moisture": "湿感",
     "notes": "备注",
     "saveRecord": "保存记录",
-    "saving": "保存中..."
+    "saving": "保存中...",
+    "durationOptions": {
+      "very_short": "极短 (<1秒)",
+      "short": "短 (1-3秒)",
+      "medium": "中等 (3-5秒)",
+      "long": "长 (>5秒)"
+    },
+    "smellLevelOptions": {
+      "mild": "温和",
+      "tolerable": "可忍受",
+      "stinky": "臭",
+      "extremely_stinky": "剧毒"
+    },
+    "temperatureOptions": {
+      "hot": "热",
+      "cold": "冷"
+    },
+    "moistureOptions": {
+      "dry": "干",
+      "moist": "湿"
+    },
+    "typeSelect": {
+      "placeholder": "输入新类型",
+      "addNew": "+ 添加新类型"
+    }
+  },
+  "analytics": {
+    "title": "分析仪表盘",
+    "period": "时间段:",
+    "last7Days": "最近7天",
+    "last30Days": "最近30天",
+    "last90Days": "最近90天",
+    "allTime": "全部时间",
+    "refresh": "刷新",
+    "charts": {
+      "dailyCount": "每日放屁计数",
+      "typeDistribution": "类型分布",
+      "smellDistribution": "气味分布",
+      "durationDistribution": "时长分布",
+      "weeklyTrend": "每周趋势",
+      "hourlyHeatmap": "每小时热力图",
+      "crossAnalysis": "交叉分析"
+    }
+  },
+  "export": {
+    "title": "数据导出",
+    "startDate": "开始日期",
+    "endDate": "结束日期",
+    "success": "导出成功!",
+    "failed": "导出失败",
+    "csvButton": "导出 CSV",
+    "excelButton": "导出 Excel",
+    "exporting": "导出中...",
+    "noDateHint": "不选择日期则导出全部数据"
   }
 }

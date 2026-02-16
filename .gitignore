@@ -96,3 +96,6 @@ frontend/playwright/.cache/
 *.exe
 *.so
 *.dylib
+
+# OpenCode
+AGENTS.md

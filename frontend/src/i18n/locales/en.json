@@ -10,25 +10,37 @@
     "records": "Records",
     "analytics": "Analytics",
     "export": "Export",
-    "logout": "Logout"
+    "logout": "Logout",
+    "hello": "Hello, {{name}}"
   },
   "login": {
     "title": "Login",
     "username": "Username",
     "password": "Password",
     "submit": "Login",
-    "noAccount": "Don't have an account? Register now"
+    "noAccount": "Don't have an account? Register now",
+    "signInToAccount": "Sign in to your account",
+    "createAccount": "Create a new account",
+    "or": "Or",
+    "signingIn": "Signing in..."
   },
   "register": {
     "title": "Register",
-    "hasAccount": "Already have an account? Login now"
+    "hasAccount": "Already have an account? Login now",
+    "createAccount": "Create an account",
+    "confirmPassword": "Confirm Password",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "creatingAccount": "Creating account...",
+    "signInExisting": "Sign in to existing account"
   },
   "records": {
     "title": "Fart Manager",
     "todayCount": "Today's Fart Count",
     "noRecords": "No Records",
     "startTracking": "Start tracking your farts!",
-    "addFirst": "Add your first record"
+    "addFirst": "Add your first record",
+    "loadMore": "Load More",
+    "fartsToday": "Farts today:"
   },
   "form": {
     "newTitle": "New Record",
@@ -41,6 +53,59 @@
     "moisture": "Moisture",
     "notes": "Notes",
     "saveRecord": "Save Record",
-    "saving": "Saving..."
+    "saving": "Saving...",
+    "durationOptions": {
+      "very_short": "Very Short (<1s)",
+      "short": "Short (1-3s)",
+      "medium": "Medium (3-5s)",
+      "long": "Long (>5s)"
+    },
+    "smellLevelOptions": {
+      "mild": "Mild",
+      "tolerable": "Tolerable",
+      "stinky": "Stinky",
+      "extremely_stinky": "Toxic"
+    },
+    "temperatureOptions": {
+      "hot": "Hot",
+      "cold": "Cold"
+    },
+    "moistureOptions": {
+      "dry": "Dry",
+      "moist": "Moist"
+    },
+    "typeSelect": {
+      "placeholder": "Enter new type",
+      "addNew": "+ Add New Type"
+    }
+  },
+  "analytics": {
+    "title": "Analytics Dashboard",
+    "period": "Period:",
+    "last7Days": "Last 7 Days",
+    "last30Days": "Last 30 Days",
+    "last90Days": "Last 90 Days",
+    "allTime": "All Time",
+    "refresh": "Refresh",
+    "charts": {
+      "dailyCount": "Daily Fart Count",
+      "typeDistribution": "Type Distribution",
+      "smellDistribution": "Smell Distribution",
+      "durationDistribution": "Duration Distribution",
+      "weeklyTrend": "Weekly Trend",
+      "hourlyHeatmap": "Hourly Heatmap",
+      "crossAnalysis": "Cross Analysis"
+    }
+  },
+  "export": {
+    "title": "Data Export",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "success": "Export Successful!",
+    "failed": "Export Failed",
+    "csvButton": "Export CSV",
+    "excelButton": "Export Excel",
+    "exporting": "Exporting...",
+    "noDateHint": "Export all data if no date selected"
   }
 }
