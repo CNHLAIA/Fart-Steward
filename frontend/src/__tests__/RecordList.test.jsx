@@ -51,9 +51,17 @@ describe('RecordList Page', () => {
   });
 
   test('handles delete action', async () => {
-    // Setup delete mock
+    api.get.mockResolvedValue({
+      data: {
+        items: [
+          { id: 1, timestamp: '2023-01-01T10:00:00Z', type_name: 'Normal', smell_level: 'mild' }
+        ],
+        total: 1,
+        page: 1,
+        per_page: 20
+      }
+    });
     api.delete.mockResolvedValue({});
-    // Setup window.confirm mock
     window.confirm = jest.fn(() => true);
 
     render(
@@ -62,10 +70,9 @@ describe('RecordList Page', () => {
       </BrowserRouter>
     );
 
-    await waitFor(() => screen.getByText('Normal'));
+    await waitFor(() => expect(screen.getByText('Normal')).toBeInTheDocument());
 
-    // Click delete on first item
-    const deleteButtons = screen.getAllByLabelText(/delete/i);
+    const deleteButtons = await screen.findAllByLabelText(/common.delete/i);
     fireEvent.click(deleteButtons[0]);
 
     expect(window.confirm).toHaveBeenCalled();
@@ -91,8 +98,6 @@ describe('RecordList Page', () => {
       </BrowserRouter>
     );
 
-    await waitFor(() => {
-      expect(screen.getByText(/No records yet/i)).toBeInTheDocument();
-    });
+    expect(await screen.findByText(/records.noRecords/i)).toBeInTheDocument();
   });
 });

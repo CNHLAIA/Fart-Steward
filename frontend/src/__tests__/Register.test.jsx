@@ -30,22 +30,22 @@ describe('Register Component', () => {
 
   test('renders register form', () => {
     renderWithAuth(<Register />);
-    expect(screen.getByLabelText(/username/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/^password$/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/confirm password/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/login.username/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/^login.password$/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/register.confirmPassword/i)).toBeInTheDocument();
   });
 
   test('shows error when passwords do not match', async () => {
     renderWithAuth(<Register />);
     
-    fireEvent.change(screen.getByLabelText(/username/i), { target: { value: 'newuser' } });
-    fireEvent.change(screen.getByLabelText(/^password$/i), { target: { value: 'pass123' } });
-    fireEvent.change(screen.getByLabelText(/confirm password/i), { target: { value: 'pass456' } });
+    fireEvent.change(screen.getByLabelText(/login.username/i), { target: { value: 'newuser' } });
+    fireEvent.change(screen.getByLabelText(/^login.password$/i), { target: { value: 'pass123' } });
+    fireEvent.change(screen.getByLabelText(/register.confirmPassword/i), { target: { value: 'pass456' } });
     
-    fireEvent.click(screen.getByRole('button', { name: /sign up/i }));
+    fireEvent.click(screen.getByRole('button', { name: /register.title/i }));
 
     await waitFor(() => {
-      expect(screen.getByText('Passwords do not match')).toBeInTheDocument();
+      expect(screen.getByText('register.passwordsDoNotMatch')).toBeInTheDocument();
     });
     expect(api.post).not.toHaveBeenCalled();
   });
@@ -57,11 +57,11 @@ describe('Register Component', () => {
 
     renderWithAuth(<Register />);
     
-    fireEvent.change(screen.getByLabelText(/username/i), { target: { value: 'newuser' } });
-    fireEvent.change(screen.getByLabelText(/^password$/i), { target: { value: 'pass123' } });
-    fireEvent.change(screen.getByLabelText(/confirm password/i), { target: { value: 'pass123' } });
+    fireEvent.change(screen.getByLabelText(/login.username/i), { target: { value: 'newuser' } });
+    fireEvent.change(screen.getByLabelText(/^login.password$/i), { target: { value: 'pass123' } });
+    fireEvent.change(screen.getByLabelText(/register.confirmPassword/i), { target: { value: 'pass123' } });
     
-    fireEvent.click(screen.getByRole('button', { name: /sign up/i }));
+    fireEvent.click(screen.getByRole('button', { name: /register.title/i }));
 
     await waitFor(() => {
       expect(api.post).toHaveBeenCalledWith('/auth/register', {

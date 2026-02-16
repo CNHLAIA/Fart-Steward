@@ -25,11 +25,11 @@ async function clickLogout(page) {
   if (await menuButton.count()) {
     if (await menuButton.isVisible()) {
       await menuButton.click();
-      await page.getByRole('button', { name: 'Logout' }).click();
+      await page.getByRole('button', { name: '退出登录' }).click();
       return;
     }
   }
-  await page.getByRole('button', { name: 'Logout' }).click();
+  await page.getByRole('button', { name: '退出登录' }).click();
 }
 
 test('Register -> Login -> Create record -> List -> Analytics -> Export -> Logout', async ({ page }) => {
@@ -37,25 +37,25 @@ test('Register -> Login -> Create record -> List -> Analytics -> Export -> Logou
   const note = `e2e-note-${Date.now()}`;
 
   await page.goto('/register');
-  await page.getByLabel('Username').fill(username);
-  await page.getByLabel('Password', { exact: true }).fill(password);
-  await page.getByLabel('Confirm Password').fill(password);
-  await page.getByRole('button', { name: 'Sign up' }).click();
+  await page.getByLabel('用户名').fill(username);
+  await page.getByLabel('密码', { exact: true }).fill(password);
+  await page.getByLabel('确认密码').fill(password);
+  await page.getByRole('button', { name: '注册' }).click();
 
   await expect(page).toHaveURL(/\/records/);
 
-  await page.getByLabel('Add new record').click();
-  await expect(page.getByText('New Fart')).toBeVisible();
-  await page.getByLabel('Notes').fill(note);
-  await page.getByRole('button', { name: 'Save Record' }).click();
+  await page.getByLabel('添加第一条记录').click();
+  await expect(page.getByText('新增记录')).toBeVisible();
+  await page.getByLabel('备注').fill(note);
+  await page.getByRole('button', { name: '保存记录' }).click();
 
   await expect(page).toHaveURL(/\/records/);
   await expect(page.getByText(note)).toBeVisible();
 
-  await clickNav(page, 'Analytics');
-  await expect(page.getByRole('heading', { name: 'Analytics Dashboard' })).toBeVisible();
+  await clickNav(page, '分析');
+  await expect(page.getByRole('heading', { name: '分析仪表盘' })).toBeVisible();
 
-  await clickNav(page, 'Export');
+  await clickNav(page, '导出');
   await expect(page.getByRole('heading', { name: '数据导出' })).toBeVisible();
 
   const download = await Promise.all([
@@ -66,7 +66,7 @@ test('Register -> Login -> Create record -> List -> Analytics -> Export -> Logou
 
   await clickLogout(page);
   await expect(page).toHaveURL(/\/login/);
-  await expect(page.getByRole('heading', { name: 'Sign in to your account' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '登录你的账号' })).toBeVisible();
 });
 
 test('Mobile responsive navigation works', async ({ page }, testInfo) => {
@@ -74,15 +74,16 @@ test('Mobile responsive navigation works', async ({ page }, testInfo) => {
   const { username, password } = uniqueUser();
 
   await page.goto('/register');
-  await page.getByLabel('Username').fill(username);
-  await page.getByLabel('Password', { exact: true }).fill(password);
-  await page.getByLabel('Confirm Password').fill(password);
-  await page.getByRole('button', { name: 'Sign up' }).click();
+  await page.getByLabel('用户名').fill(username);
+  await page.getByLabel('密码', { exact: true }).fill(password);
+  await page.getByLabel('确认密码').fill(password);
+  await page.getByRole('button', { name: '注册' }).click();
   await expect(page).toHaveURL(/\/records/);
 
-  await clickNav(page, 'Analytics');
-  await expect(page.getByRole('heading', { name: 'Analytics Dashboard' })).toBeVisible();
+  await clickNav(page, '分析');
+  await expect(page.getByRole('heading', { name: '分析仪表盘' })).toBeVisible();
 
   await clickLogout(page);
   await expect(page).toHaveURL(/\/login/);
 });
+

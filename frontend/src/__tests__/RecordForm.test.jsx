@@ -37,13 +37,13 @@ describe('RecordForm Component', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByLabelText(/Date & Time/i)).toBeInTheDocument();
+      expect(screen.getByLabelText(/form.dateTime/i)).toBeInTheDocument();
     });
 
-    expect(screen.getByText(/Duration/i)).toBeInTheDocument();
-    expect(screen.getByText(/Smell Level/i)).toBeInTheDocument();
-    expect(screen.getByText(/Temperature/i)).toBeInTheDocument();
-    expect(screen.getByText(/Moisture/i)).toBeInTheDocument();
+    expect(screen.getByText(/^form.duration$/)).toBeInTheDocument();
+    expect(screen.getByText(/^form.smellLevel$/)).toBeInTheDocument();
+    expect(screen.getByText(/^form.temperature$/)).toBeInTheDocument();
+    expect(screen.getByText(/^form.moisture$/)).toBeInTheDocument();
     
     await waitFor(() => {
       expect(api.get).toHaveBeenCalledWith('/fart-types');
@@ -66,21 +66,21 @@ describe('RecordForm Component', () => {
     // Note: implementation details might vary (e.g., select vs buttons), assuming accessible names
     
     // Select type
-    fireEvent.change(screen.getByRole('combobox', { name: /type/i }), { target: { value: '1' } });
+    fireEvent.change(screen.getByRole('combobox', { name: /form.type/i }), { target: { value: '1' } });
     
     // Select duration (assuming radio or buttons)
-    const shortDuration = screen.getByRole('button', { name: 'Short (1-3s)' });
+    const shortDuration = screen.getByRole('button', { name: 'form.durationOptions.short' });
     fireEvent.click(shortDuration);
 
     // Select smell
-    const mildSmell = screen.getByRole('button', { name: 'Mild' });
+    const mildSmell = screen.getByRole('button', { name: 'form.smellLevelOptions.mild' });
     fireEvent.click(mildSmell);
 
     // Notes
-    fireEvent.change(screen.getByLabelText(/Notes/i), { target: { value: 'Test note' } });
+    fireEvent.change(screen.getByLabelText(/form.notes/i), { target: { value: 'Test note' } });
 
     // Submit
-    fireEvent.click(screen.getByRole('button', { name: /Save/i }));
+    fireEvent.click(screen.getByRole('button', { name: /form.saveRecord/i }));
 
     await waitFor(() => {
       expect(api.post).toHaveBeenCalledWith('/records', expect.objectContaining({
@@ -104,7 +104,7 @@ describe('RecordForm Component', () => {
 
     await waitFor(() => screen.getByText('Normal'));
 
-    fireEvent.click(screen.getByRole('button', { name: /Save/i }));
+    fireEvent.click(screen.getByRole('button', { name: /form.saveRecord/i }));
 
     await waitFor(() => {
         // Expect some error handling, maybe an alert or error message

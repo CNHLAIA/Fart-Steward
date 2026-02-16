@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import api from '../services/api';
 
 export default function Export() {
+  const { t } = useTranslation();
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
   const [loading, setLoading] = useState(false);
@@ -28,10 +30,10 @@ export default function Export() {
       link.remove();
       window.URL.revokeObjectURL(url);
 
-      setSuccess(`${format.toUpperCase()} 导出成功!`);
+      setSuccess(t('export.success'));
     } catch (err) {
       console.error(err);
-      alert('导出失败，请重试');
+      alert(t('export.failed'));
     } finally {
       setLoading(false);
     }
@@ -40,12 +42,12 @@ export default function Export() {
   return (
     <div className="min-h-screen bg-gray-50 p-4">
       <div className="max-w-md mx-auto">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">数据导出</h1>
+        <h1 className="text-2xl font-bold text-gray-900 mb-6">{t('export.title')}</h1>
 
         <div className="bg-white rounded-lg shadow p-6 space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              开始日期
+              {t('export.startDate')}
             </label>
             <input
               type="date"
@@ -57,7 +59,7 @@ export default function Export() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              结束日期
+              {t('export.endDate')}
             </label>
             <input
               type="date"
@@ -79,19 +81,19 @@ export default function Export() {
               disabled={loading}
               className="flex-1 py-2 px-4 bg-purple-600 text-white rounded-md hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              {loading ? '导出中...' : '导出 CSV'}
+              {loading ? t('export.exporting') : t('export.csvButton')}
             </button>
             <button
               onClick={() => handleExport('excel')}
               disabled={loading}
               className="flex-1 py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              {loading ? '导出中...' : '导出 Excel'}
+              {loading ? t('export.exporting') : t('export.excelButton')}
             </button>
           </div>
 
           <p className="text-xs text-gray-500 text-center mt-2">
-            不选择日期则导出全部数据
+            {t('export.noDateHint')}
           </p>
         </div>
       </div>

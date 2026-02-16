@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAnalytics } from '../hooks/useAnalytics';
 import ChartCard from '../components/charts/ChartCard';
 import {
@@ -12,6 +13,7 @@ import {
 } from '../components/charts/chartUtils';
 
 export default function Analytics() {
+  const { t } = useTranslation();
   const [days, setDays] = useState(30);
   const [weeks, setWeeks] = useState(12);
 
@@ -20,26 +22,26 @@ export default function Analytics() {
   return (
     <div className="p-6 max-w-7xl mx-auto">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">Analytics Dashboard</h1>
+        <h1 className="text-3xl font-bold text-gray-800">{t('analytics.title')}</h1>
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2">
-            <span className="text-sm text-gray-600">Period:</span>
+            <span className="text-sm text-gray-600">{t('analytics.period')}</span>
             <select 
               value={days} 
               onChange={(e) => setDays(Number(e.target.value))}
               className="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white"
             >
-              <option value={7}>Last 7 Days</option>
-              <option value={30}>Last 30 Days</option>
-              <option value={90}>Last 90 Days</option>
-              <option value={0}>All Time</option>
+              <option value={7}>{t('analytics.last7Days')}</option>
+              <option value={30}>{t('analytics.last30Days')}</option>
+              <option value={90}>{t('analytics.last90Days')}</option>
+              <option value={0}>{t('analytics.allTime')}</option>
             </select>
           </div>
           <button 
             onClick={refetch} 
             className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors text-sm font-medium shadow-sm"
           >
-            Refresh
+            {t('analytics.refresh')}
           </button>
         </div>
       </div>
@@ -62,7 +64,7 @@ export default function Analytics() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div className="col-span-1 md:col-span-2">
           <ChartCard 
-            title={`Daily Fart Count (${days ? `Last ${days} Days` : 'All Time'})`}
+            title={t('analytics.charts.dailyCount')}
             loading={loading}
             error={error}
             option={getDailyCountOption(data.dailyCount)}
@@ -71,7 +73,7 @@ export default function Analytics() {
         
         <div className="col-span-1">
           <ChartCard 
-            title="Type Distribution"
+            title={t('analytics.charts.typeDistribution')}
             loading={loading}
             error={error}
             option={getTypeDistributionOption(data.typeDistribution)}
@@ -80,7 +82,7 @@ export default function Analytics() {
 
         <div className="col-span-1">
           <ChartCard 
-            title="Smell Distribution"
+            title={t('analytics.charts.smellDistribution')}
             loading={loading}
             error={error}
             option={getSmellDistributionOption(data.smellDistribution)}
@@ -89,7 +91,7 @@ export default function Analytics() {
 
         <div className="col-span-1">
           <ChartCard 
-            title="Duration Distribution"
+            title={t('analytics.charts.durationDistribution')}
             loading={loading}
             error={error}
             option={getDurationDistributionOption(data.durationDistribution)}
@@ -98,7 +100,7 @@ export default function Analytics() {
 
         <div className="col-span-1">
            <ChartCard 
-            title={`Weekly Trend (Last ${weeks} Weeks)`}
+            title={t('analytics.charts.weeklyTrend')}
             loading={loading}
             error={error}
             option={getWeeklyCountOption(data.weeklyCount)}
@@ -107,7 +109,7 @@ export default function Analytics() {
 
         <div className="col-span-1 md:col-span-2">
           <ChartCard 
-            title="Hourly Heatmap (24h x 7 Days)"
+            title={t('analytics.charts.hourlyHeatmap')}
             loading={loading}
             error={error}
             option={getHourlyHeatmapOption(data.hourlyHeatmap)}
@@ -116,7 +118,7 @@ export default function Analytics() {
 
         <div className="col-span-1 md:col-span-3 lg:col-span-3">
           <ChartCard 
-            title="Cross Analysis (Duration vs Smell)"
+            title={t('analytics.charts.crossAnalysis')}
             loading={loading}
             error={error}
             option={getCrossAnalysisOption(data.crossAnalysis)}

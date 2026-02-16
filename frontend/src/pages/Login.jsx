@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 
 const Login = () => {
+  const { t } = useTranslation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -19,7 +21,7 @@ const Login = () => {
       await login(username, password);
       navigate('/records');
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to login');
+      setError(err.response?.data?.message || t('common.error') || 'Failed to login');
     } finally {
       setLoading(false);
     }
@@ -29,7 +31,7 @@ const Login = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Sign in to your account
+          {t('login.signInToAccount')}
         </h2>
       </div>
 
@@ -44,7 +46,7 @@ const Login = () => {
             
             <div>
               <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-                Username
+                {t('login.username')}
               </label>
               <div className="mt-1">
                 <input
@@ -61,7 +63,7 @@ const Login = () => {
 
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
+                {t('login.password')}
               </label>
               <div className="mt-1">
                 <input
@@ -82,7 +84,7 @@ const Login = () => {
                 disabled={loading}
                 className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
-                {loading ? 'Signing in...' : 'Sign in'}
+                {loading ? t('login.signingIn') : t('login.submit')}
               </button>
             </div>
           </form>
@@ -94,14 +96,14 @@ const Login = () => {
               </div>
               <div className="relative flex justify-center text-sm">
                 <span className="px-2 bg-white text-gray-500">
-                  Or
+                  {t('login.or')}
                 </span>
               </div>
             </div>
 
             <div className="mt-6 text-center">
               <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">
-                Create a new account
+                {t('login.createAccount')}
               </Link>
             </div>
           </div>

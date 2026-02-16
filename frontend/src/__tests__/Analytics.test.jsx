@@ -27,18 +27,18 @@ describe('Analytics Page', () => {
 
   test('renders page title', () => {
     render(<Analytics />);
-    expect(screen.getByText('Analytics Dashboard')).toBeInTheDocument();
+    expect(screen.getByText('analytics.title')).toBeInTheDocument();
   });
 
   test('renders all charts when data is available', () => {
     render(<Analytics />);
-    expect(screen.getByText(/Daily Fart Count/i)).toBeInTheDocument();
-    expect(screen.getByText('Type Distribution')).toBeInTheDocument();
-    expect(screen.getByText('Smell Distribution')).toBeInTheDocument();
-    expect(screen.getByText('Duration Distribution')).toBeInTheDocument();
-    expect(screen.getByText(/Weekly Trend/i)).toBeInTheDocument();
-    expect(screen.getByText(/Hourly Heatmap/i)).toBeInTheDocument();
-    expect(screen.getByText(/Cross Analysis/i)).toBeInTheDocument();
+    expect(screen.getByText(/analytics.charts.dailyCount/i)).toBeInTheDocument();
+    expect(screen.getByText('analytics.charts.typeDistribution')).toBeInTheDocument();
+    expect(screen.getByText('analytics.charts.smellDistribution')).toBeInTheDocument();
+    expect(screen.getByText('analytics.charts.durationDistribution')).toBeInTheDocument();
+    expect(screen.getByText(/analytics.charts.weeklyTrend/i)).toBeInTheDocument();
+    expect(screen.getByText(/analytics.charts.hourlyHeatmap/i)).toBeInTheDocument();
+    expect(screen.getByText(/analytics.charts.crossAnalysis/i)).toBeInTheDocument();
     
     const charts = screen.getAllByTestId('echarts-mock');
     expect(charts.length).toBe(7);
@@ -83,7 +83,7 @@ describe('Analytics Page', () => {
     });
 
     render(<Analytics />);
-    fireEvent.click(screen.getByText('Refresh'));
+    fireEvent.click(screen.getByText('analytics.refresh'));
     expect(refetch).toHaveBeenCalled();
   });
 });

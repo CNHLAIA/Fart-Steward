@@ -32,14 +32,14 @@ describe('Login Component', () => {
 
   test('renders login form', () => {
     renderWithAuth(<Login />);
-    expect(screen.getByLabelText(/username/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /sign in/i })).toBeInTheDocument();
+    expect(screen.getByLabelText(/login.username/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/login.password/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /login.submit/i })).toBeInTheDocument();
   });
 
   test('validates inputs', async () => {
     renderWithAuth(<Login />);
-    fireEvent.click(screen.getByRole('button', { name: /sign in/i }));
+    fireEvent.click(screen.getByRole('button', { name: /login.submit/i }));
     // HTML5 validation will trigger, but jest-dom doesn't fully simulate browser validation UI
     // We mainly check if the function was NOT called if empty, but here we just check elements exist
   });
@@ -51,9 +51,9 @@ describe('Login Component', () => {
 
     renderWithAuth(<Login />);
     
-    fireEvent.change(screen.getByLabelText(/username/i), { target: { value: 'testuser' } });
-    fireEvent.change(screen.getByLabelText(/password/i), { target: { value: 'password123' } });
-    fireEvent.click(screen.getByRole('button', { name: /sign in/i }));
+    fireEvent.change(screen.getByLabelText(/login.username/i), { target: { value: 'testuser' } });
+    fireEvent.change(screen.getByLabelText(/login.password/i), { target: { value: 'password123' } });
+    fireEvent.click(screen.getByRole('button', { name: /login.submit/i }));
 
     await waitFor(() => {
       expect(api.post).toHaveBeenCalledWith('/auth/login', {
@@ -70,9 +70,9 @@ describe('Login Component', () => {
 
     renderWithAuth(<Login />);
     
-    fireEvent.change(screen.getByLabelText(/username/i), { target: { value: 'wrong' } });
-    fireEvent.change(screen.getByLabelText(/password/i), { target: { value: 'wrong' } });
-    fireEvent.click(screen.getByRole('button', { name: /sign in/i }));
+    fireEvent.change(screen.getByLabelText(/login.username/i), { target: { value: 'wrong' } });
+    fireEvent.change(screen.getByLabelText(/login.password/i), { target: { value: 'wrong' } });
+    fireEvent.click(screen.getByRole('button', { name: /login.submit/i }));
 
     await waitFor(() => {
       expect(screen.getByText('Invalid credentials')).toBeInTheDocument();
