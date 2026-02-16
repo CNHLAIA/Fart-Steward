@@ -1,0 +1,46 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "loading": "Loading..."
+  },
+  "nav": {
+    "records": "Records",
+    "analytics": "Analytics",
+    "export": "Export",
+    "logout": "Logout"
+  },
+  "login": {
+    "title": "Login",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Login",
+    "noAccount": "Don't have an account? Register now"
+  },
+  "register": {
+    "title": "Register",
+    "hasAccount": "Already have an account? Login now"
+  },
+  "records": {
+    "title": "Fart Manager",
+    "todayCount": "Today's Fart Count",
+    "noRecords": "No Records",
+    "startTracking": "Start tracking your farts!",
+    "addFirst": "Add your first record"
+  },
+  "form": {
+    "newTitle": "New Record",
+    "editTitle": "Edit Record",
+    "dateTime": "Date & Time",
+    "duration": "Duration (seconds)",
+    "type": "Type",
+    "smellLevel": "Smell Level",
+    "temperature": "Temperature",
+    "moisture": "Moisture",
+    "notes": "Notes",
+    "saveRecord": "Save Record",
+    "saving": "Saving..."
+  }
+}

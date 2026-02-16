@@ -1,0 +1,46 @@
+{
+  "common": {
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "edit": "编辑",
+    "loading": "加载中..."
+  },
+  "nav": {
+    "records": "记录",
+    "analytics": "分析",
+    "export": "导出",
+    "logout": "退出登录"
+  },
+  "login": {
+    "title": "登录",
+    "username": "用户名",
+    "password": "密码",
+    "submit": "登录",
+    "noAccount": "没有账号？立即注册"
+  },
+  "register": {
+    "title": "注册",
+    "hasAccount": "已有账号？立即登录"
+  },
+  "records": {
+    "title": "屁管家",
+    "todayCount": "今日放屁次数",
+    "noRecords": "暂无记录",
+    "startTracking": "开始追踪你的屁事吧！",
+    "addFirst": "添加第一条记录"
+  },
+  "form": {
+    "newTitle": "新增记录",
+    "editTitle": "编辑记录",
+    "dateTime": "日期时间",
+    "duration": "时长（秒）",
+    "type": "类型",
+    "smellLevel": "气味等级",
+    "temperature": "温感",
+    "moisture": "湿感",
+    "notes": "备注",
+    "saveRecord": "保存记录",
+    "saving": "保存中..."
+  }
+}
