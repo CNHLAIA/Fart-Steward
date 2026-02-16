@@ -260,3 +260,28 @@ def test_create_record_rejects_invalid_enum_value(client, app):
     )
     assert res.status_code == 400
     assert res.get_json()["code"] == "INVALID_ENUM"
+
+
+def test_serialize_record_includes_type_name(client, app):
+    token = _register_and_get_token(client, "user1")
+    type_id = _preset_type_id(app, "响屁")
+
+    payload = {
+        "duration": "short",
+        "type_id": type_id,
+        "smell_level": "mild",
+        "temperature": "hot",
+        "moisture": "dry",
+    }
+    res = client.post("/api/records", json=payload, headers=_auth_headers(token))
+    assert res.status_code == 201
+
+    body = res.get_json()
+    assert "type_name" in body
+    assert body["type_name"] == "响屁"
+
+    res_list = client.get("/api/records", headers=_auth_headers(token))
+    assert res_list.status_code == 200
+    list_body = res_list.get_json()
+    assert len(list_body["items"]) == 1
+    assert list_body["items"][0]["type_name"] == "响屁"

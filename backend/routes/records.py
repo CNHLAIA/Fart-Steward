@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 from typing import Any
 
 from flask import Blueprint, jsonify, request
+from sqlalchemy.orm import joinedload
 
 from auth import error_response, get_jwt_identity, jwt_required
 from models import FartRecord, FartType, User, db
@@ -58,6 +59,7 @@ def _serialize_record(r: FartRecord) -> dict[str, Any]:
         "timestamp": r.timestamp,
         "duration": r.duration,
         "type_id": int(r.type_id),
+        "type_name": r.fart_type.name if r.fart_type else None,
         "smell_level": r.smell_level,
         "temperature": r.temperature,
         "moisture": r.moisture,
@@ -193,7 +195,9 @@ def list_records():
     if request.args.get("date_to") and date_to is None:
         return error_response("Invalid date_to", "INVALID_REQUEST", 400)
 
-    q = FartRecord.query.filter_by(user_id=int(user.id))
+    q = FartRecord.query.options(joinedload(FartRecord.fart_type)).filter_by(
+        user_id=int(user.id)
+    )
     if date_from:
         q = q.filter(FartRecord.timestamp >= date_from)
     if date_to:

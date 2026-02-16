@@ -41,6 +41,8 @@ class FartRecord(db.Model):
     notes = db.Column(db.Text)
     created_at = db.Column(db.Text, server_default=text("(datetime('now'))"))
 
+    fart_type = db.relationship("FartType", backref="records")
+
     __table_args__ = (
         CheckConstraint(
             "duration IN ('very_short','short','medium','long')",
