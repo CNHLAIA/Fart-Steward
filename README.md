@@ -1,4 +1,4 @@
-# 屁事管家 💨
+# 屁管家 💨
 
 **[English Version](docs/README_EN.md)**
 

@@ -1,4 +1,4 @@
-# Fart Steward 💨
+# Fart Manager 💨
 
 **[中文版](../README.md)**
 
