@@ -40,10 +40,12 @@ A professional fart recording and analysis tool that helps you track data for ev
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### Option 1: Docker Deployment (Recommended)
+
+#### Prerequisites
 - Docker + Docker Compose
 
-### One-Click Start
+#### One-Click Start
 
 ```bash
 # 1. Copy environment variable file
@@ -60,18 +62,50 @@ After services start:
 - Frontend: `http://localhost`
 - Backend API: `http://localhost:5000`
 
-### Stop Services
+#### Stop Services
 
 ```bash
 docker-compose down
 ```
 
-### Clear Data
+#### Clear Data
 
 ```bash
 # Stop services and delete database
 docker-compose down
 rm -rf data
+```
+
+### Option 2: Windows Desktop App
+
+#### Prerequisites
+- Python 3.10+
+- Node.js 18+
+- PyInstaller: `pip install pyinstaller`
+
+#### Build Command
+
+```powershell
+# PowerShell
+./scripts/build.ps1
+
+# Or using Node.js
+node scripts/build.js
+```
+
+After building, the installer is at `dist-electron/Fart Manager Setup 1.0.0.exe`
+
+#### Build Options
+
+```powershell
+# Clean and rebuild
+./scripts/build.ps1 -Clean
+
+# Skip backend build (if already built)
+./scripts/build.ps1 -SkipBackend
+
+# Skip frontend build (if already built)
+./scripts/build.ps1 -SkipFrontend
 ```
 
 ## 🛠 Tech Stack
@@ -82,6 +116,7 @@ rm -rf data
 | Backend | Flask + SQLAlchemy |
 | Database | SQLite |
 | Deployment | Docker + Docker Compose |
+| Desktop App | Electron + PyInstaller |
 | Charts | ECharts |
 | Auth | JWT |
 | i18n | react-i18next |
@@ -100,11 +135,20 @@ rm -rf data
 ├── backend/          # Flask backend
 │   ├── routes/       # API routes
 │   ├── auth.py       # Authentication module
-│   └── models.py     # Data models
+│   ├── models.py     # Data models
+│   ├── build.spec    # PyInstaller config
+│   └── build_exe.py  # Build script
 ├── frontend/         # React frontend
 │   └── src/
 │       ├── pages/    # Page components
 │       └── components/ # Reusable components
+├── electron/         # Electron desktop app
+│   ├── main.js       # Main process
+│   ├── preload.js    # Preload script
+│   └── package.json  # Electron config
+├── scripts/          # Build scripts
+│   ├── build.ps1     # PowerShell build script
+│   └── build.js      # Node.js build script
 ├── docker-compose.yml
 ├── Dockerfile.backend
 ├── Dockerfile.frontend

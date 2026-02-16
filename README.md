@@ -40,10 +40,12 @@
 
 ## 🚀 快速开始
 
-### 环境要求
+### 方式一：Docker 部署（推荐）
+
+#### 环境要求
 - Docker + Docker Compose
 
-### 一键启动
+#### 一键启动
 
 ```bash
 # 1. 复制环境变量文件
@@ -60,18 +62,50 @@ open http://localhost
 - 前端界面：`http://localhost`
 - 后端 API：`http://localhost:5000`
 
-### 停止服务
+#### 停止服务
 
 ```bash
 docker-compose down
 ```
 
-### 清除数据
+#### 清除数据
 
 ```bash
 # 停止服务并删除数据库
 docker-compose down
 rm -rf data
+```
+
+### 方式二：Windows 桌面应用
+
+#### 环境要求
+- Python 3.10+
+- Node.js 18+
+- PyInstaller: `pip install pyinstaller`
+
+#### 打包命令
+
+```powershell
+# PowerShell
+./scripts/build.ps1
+
+# 或使用 Node.js
+node scripts/build.js
+```
+
+打包完成后，安装包位于 `dist-electron/屁管家 Setup 1.0.0.exe`
+
+#### 打包选项
+
+```powershell
+# 清理后重新打包
+./scripts/build.ps1 -Clean
+
+# 跳过后端打包（如果已打包）
+./scripts/build.ps1 -SkipBackend
+
+# 跳过前端打包（如果已打包）
+./scripts/build.ps1 -SkipFrontend
 ```
 
 ## 🛠 技术栈
@@ -82,6 +116,7 @@ rm -rf data
 | 后端 | Flask + SQLAlchemy |
 | 数据库 | SQLite |
 | 部署 | Docker + Docker Compose |
+| 桌面应用 | Electron + PyInstaller |
 | 图表 | ECharts |
 | 认证 | JWT |
 | 国际化 | react-i18next |
@@ -100,11 +135,20 @@ rm -rf data
 ├── backend/          # Flask 后端
 │   ├── routes/       # API 路由
 │   ├── auth.py       # 认证模块
-│   └── models.py     # 数据模型
+│   ├── models.py     # 数据模型
+│   ├── build.spec    # PyInstaller 配置
+│   └── build_exe.py  # 打包脚本
 ├── frontend/         # React 前端
 │   └── src/
 │       ├── pages/    # 页面组件
 │       └── components/ # 可复用组件
+├── electron/         # Electron 桌面应用
+│   ├── main.js       # 主进程
+│   ├── preload.js    # 预加载脚本
+│   └── package.json  # Electron 配置
+├── scripts/          # 打包脚本
+│   ├── build.ps1     # PowerShell 打包脚本
+│   └── build.js      # Node.js 打包脚本
 ├── docker-compose.yml
 ├── Dockerfile.backend
 ├── Dockerfile.frontend
