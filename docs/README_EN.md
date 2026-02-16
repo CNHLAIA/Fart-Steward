@@ -40,7 +40,18 @@ A professional fart recording and analysis tool that helps you track data for ev
 
 ## 🚀 Quick Start
 
-### Option 1: Docker Deployment (Recommended)
+### Option 1: Windows Desktop App (Recommended)
+
+#### Download & Install
+1. Go to [Releases](https://github.com/CNHLAIA/Fart-Steward/releases) page
+2. Download the latest `Fart-Manager-Setup-1.0.0.exe`
+3. Double-click to install and use
+
+#### Data Storage
+After installation, data is stored at:
+- Windows: `%APPDATA%/fart-manager/data/app.db`
+
+### Option 2: Docker Deployment
 
 #### Prerequisites
 - Docker + Docker Compose
@@ -76,7 +87,7 @@ docker-compose down
 rm -rf data
 ```
 
-### Option 2: Windows Desktop App
+### Option 3: Build from Source
 
 #### Prerequisites
 - Python 3.10+
@@ -93,20 +104,7 @@ rm -rf data
 node scripts/build.js
 ```
 
-After building, the installer is at `dist-electron/Fart Manager Setup 1.0.0.exe`
-
-#### Build Options
-
-```powershell
-# Clean and rebuild
-./scripts/build.ps1 -Clean
-
-# Skip backend build (if already built)
-./scripts/build.ps1 -SkipBackend
-
-# Skip frontend build (if already built)
-./scripts/build.ps1 -SkipFrontend
-```
+After building, the installer is at `dist-electron/Fart-Manager-Setup-1.0.0.exe`
 
 ## 🛠 Tech Stack
 

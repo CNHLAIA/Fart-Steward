@@ -40,7 +40,18 @@
 
 ## 🚀 快速开始
 
-### 方式一：Docker 部署（推荐）
+### 方式一：Windows 桌面应用（推荐）
+
+#### 下载安装
+1. 前往 [Releases](https://github.com/CNHLAIA/Fart-Steward/releases) 页面
+2. 下载最新版本的 `屁管家-Setup-1.0.0.exe`
+3. 双击安装即可使用
+
+#### 数据存储
+安装后数据存储位置：
+- Windows: `%APPDATA%/fart-manager/data/app.db`
+
+### 方式二：Docker 部署
 
 #### 环境要求
 - Docker + Docker Compose
@@ -76,7 +87,7 @@ docker-compose down
 rm -rf data
 ```
 
-### 方式二：Windows 桌面应用
+### 方式三：从源码构建
 
 #### 环境要求
 - Python 3.10+
@@ -94,19 +105,6 @@ node scripts/build.js
 ```
 
 打包完成后，安装包位于 `dist-electron/屁管家 Setup 1.0.0.exe`
-
-#### 打包选项
-
-```powershell
-# 清理后重新打包
-./scripts/build.ps1 -Clean
-
-# 跳过后端打包（如果已打包）
-./scripts/build.ps1 -SkipBackend
-
-# 跳过前端打包（如果已打包）
-./scripts/build.ps1 -SkipFrontend
-```
 
 ## 🛠 技术栈
 
