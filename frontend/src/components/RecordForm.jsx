@@ -3,6 +3,23 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import api from '../services/api';
 
+// 将 UTC ISO 字符串转换为本地 datetime-local 格式
+const utcToLocalDatetime = (isoString) => {
+  const date = new Date(isoString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  return `${year}-${month}-${day}T${hours}:${minutes}`;
+};
+
+// 将本地 datetime-local 转换为 UTC ISO 字符串
+const localDatetimeToUtc = (localDatetime) => {
+  const date = new Date(localDatetime);
+  return date.toISOString();
+};
+
 const DURATIONS = ['very_short', 'short', 'medium', 'long'];
 const SMELL_LEVELS = ['mild', 'tolerable', 'stinky', 'extremely_stinky'];
 const TEMPERATURES = ['hot', 'cold'];
@@ -40,7 +57,7 @@ export default function RecordForm() {
           const record = recordResponse.data;
           setFormData({
             ...record,
-            timestamp: record.timestamp.slice(0, 16)
+            timestamp: utcToLocalDatetime(record.timestamp)
           });
         } else if (typesResponse.data.length > 0) {
            setFormData(prev => ({ ...prev, type_id: typesResponse.data[0].id }));
@@ -60,7 +77,10 @@ export default function RecordForm() {
     setLoading(true);
     
     try {
-      let submitData = { ...formData };
+      let submitData = { 
+        ...formData,
+        timestamp: localDatetimeToUtc(formData.timestamp)
+      };
       
       if (isCustomType && customType) {
         // Future implementation: Create new type via API
