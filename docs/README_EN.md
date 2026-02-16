@@ -33,6 +33,11 @@ A professional fart recording and analysis tool that helps you track data for ev
 - Export to Excel (xlsx) format
 - Filter export content by date range
 
+### Internationalization 🌐
+- Supports Chinese and English interfaces
+- Chinese by default
+- One-click language switching with automatic preference saving
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -79,6 +84,7 @@ rm -rf data
 | Deployment | Docker + Docker Compose |
 | Charts | ECharts |
 | Auth | JWT |
+| i18n | react-i18next |
 
 ## 📚 Documentation Links
 
